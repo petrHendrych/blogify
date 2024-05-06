@@ -2,8 +2,11 @@
 import BigLogo from "../assets/images/blogify-big.svg?react";
 import { Form, InputGroup, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t } = useTranslation();
+
   return (
     <Row className="justify-content-center my-4">
       <BigLogo />
@@ -11,15 +14,15 @@ const Header = () => {
       <div className="d-flex flex-row align-items-center justify-content-between mt-4 p-0">
         <Nav defaultActiveKey="/home">
           <Nav.Item>
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/home">{t("navbar.home")}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link as={Link} to="/contact">
-              Cooking
+              {t("navbar.cooking")}
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-2">IT</Nav.Link>
+            <Nav.Link eventKey="link-2">{t("navbar.IT")}</Nav.Link>
           </Nav.Item>
         </Nav>
 
