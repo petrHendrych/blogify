@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 const RootLayout = () => {
   return (
-    <Container className="mx-auto">
+    <Container>
       <Header />
       <Outlet />
     </Container>

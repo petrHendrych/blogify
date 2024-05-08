@@ -1,6 +1,4 @@
-@import "bootstrap/scss/functions"
-@import "bootstrap/scss/variables"
-@import "bootstrap/scss/mixins"
+@import "main"
 
 .postContainer
   display: grid
@@ -20,10 +18,10 @@
     > img
       scale: 1.05
 
-@include media-breakpoint-down(sm)
+@include media-breakpoint-down(md)
   .postContainer
     grid-template-columns: 1fr
 
-@include media-breakpoint-between(sm, lg)
+@include media-breakpoint-between(md, lg)
   .postContainer
     grid-template-columns: 1fr 1fr

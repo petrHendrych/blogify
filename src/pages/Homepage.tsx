@@ -16,7 +16,9 @@ function Homepage() {
   return (
     <>
       <ThumbnailPost title={title} description={description} />
-      <h3 className="mt-5 text-center text-uppercase">{t("latestPosts")}</h3>
+      <h3 className="d-none d-md-block mt-5 text-center text-uppercase">
+        {t("latestPosts")}
+      </h3>
       <div className={styles.postContainer}>
         {posts.map((post) => (
           <PostCard {...post} key={post.id} />
