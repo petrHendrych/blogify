@@ -10,6 +10,16 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
+        loader: async ({ request }) => {
+          const res = await fetch(
+            "https://jsonplaceholder.typicode.com/posts",
+            {
+              signal: request.signal,
+            },
+          );
+          const data = await res.json();
+          return data.splice(0, 12); // just get first 12 instead all 100 from request
+        },
       },
     ],
   },

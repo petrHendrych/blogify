@@ -1,0 +1,29 @@
+@import "bootstrap/scss/functions"
+@import "bootstrap/scss/variables"
+@import "bootstrap/scss/mixins"
+
+.postContainer
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  gap: var(--bs-gutter-x)
+  margin-bottom: 3rem
+
+.postCard
+  transition: all 0.3s ease-in-out
+  cursor: pointer
+  overflow: hidden
+  border: none
+  box-shadow: var(--bs-box-shadow)
+  > img
+    transition: all 0.3s ease-in-out
+  &:hover
+    > img
+      scale: 1.05
+
+@include media-breakpoint-down(sm)
+  .postContainer
+    grid-template-columns: 1fr
+
+@include media-breakpoint-between(sm, lg)
+  .postContainer
+    grid-template-columns: 1fr 1fr

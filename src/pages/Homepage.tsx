@@ -1,23 +1,26 @@
-import Thumbnail from "../assets/images/big-thumbnail.avif";
-import styles from "@/assets/stylesheets/pages/homepage/_big-thumbnail.module.sass";
-import { Button } from "react-bootstrap";
+import ThumbnailPost from "@/components/ThumbnailPost.tsx";
+import PostCard from "@/components/PostCard.tsx";
+import { useLoaderData } from "react-router-dom";
+import { Post } from "@/types";
+import styles from "@/assets/stylesheets/_post.module.sass";
+import { useTranslation } from "react-i18next";
+
+const title = "IMPRESS YOUR FRIENDS WITH THE BEST CARBONARA";
+const description =
+  "Fruitcake gingerbread sesame snaps pastry donut. Cake candy jelly-o oat cake bonbon icing lemon drops apple pie. Carrot cake cupcake cookie soufflé cookie soufflé.";
 
 function Homepage() {
+  const { t } = useTranslation();
+  const posts = useLoaderData() as Post[];
+
   return (
     <>
-      <div className="position-relative">
-        <img src={Thumbnail} alt="thumb" className="rounded-4 w-100" />
-        <div className={styles.container}>
-          <h1 className={styles.title}>
-            IMPRESS YOUR FRIENDS WITH THE BEST CARBONARA
-          </h1>
-          <p className={styles.paragraph}>
-            Fruitcake gingerbread sesame snaps pastry donut. Cake candy jelly-o
-            oat cake bonbon icing lemon drops apple pie. Carrot cake cupcake
-            cookie soufflé cookie soufflé.{" "}
-          </p>
-          <Button className={styles.actionButton}>Read more</Button>
-        </div>
+      <ThumbnailPost title={title} description={description} />
+      <h3 className="mt-5 text-center text-uppercase">{t("latestPosts")}</h3>
+      <div className={styles.postContainer}>
+        {posts.map((post) => (
+          <PostCard {...post} key={post.id} />
+        ))}
       </div>
     </>
   );
