@@ -1,1 +1,2 @@
-export * from "./postTypes.ts";
+export * from "./postsTypes.ts";
+export * from "./commentsTypes.ts";

@@ -2,15 +2,19 @@ import { Button, Card } from "react-bootstrap";
 import thumbnail from "../assets/images/thumbnail.jpg";
 import styles from "../assets/stylesheets/_post.module.sass";
 import { Post } from "@/types";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const PostCard = ({ title, body }: Post) => {
+const PostCard = ({ title, body, id }: Post) => {
+  const { t } = useTranslation();
+
   return (
-    <Card className={styles.postCard}>
+    <Card as={Link} to={`/posts/${id}`} className={styles.postCard}>
       <Card.Img variant="top" src={thumbnail} alt={title} title={title} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
-        <Button variant="primary">Read article</Button>
+        <Button variant="outline-primary">{t("readFullArticle")}</Button>
       </Card.Body>
     </Card>
   );
