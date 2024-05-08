@@ -11,7 +11,7 @@ const Header = () => {
     <Row className="justify-content-center my-4">
       <BigLogo />
 
-      <div className="d-flex flex-row align-items-center justify-content-between mt-4 p-0">
+      <div className="d-flex flex-row align-items-center justify-content-between mt-4">
         <Nav defaultActiveKey="/home">
           <Nav.Item>
             <Nav.Link href="/home">{t("navbar.home")}</Nav.Link>
