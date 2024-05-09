@@ -3,8 +3,20 @@ import RootLayout from "./layouts/RootLayout.tsx";
 import Homepage from "./pages/Homepage.tsx";
 import PostDetail from "./pages/PostDetail.tsx";
 import { postsService } from "@/services";
+import DetailLayout from "@/layouts/DetailLayout.tsx";
 
 export const router = createBrowserRouter([
+  {
+    path: "/posts",
+    element: <DetailLayout />,
+    children: [
+      {
+        path: ":postId",
+        element: <PostDetail />,
+        loader: postsService.fetchPostById,
+      },
+    ],
+  },
   {
     path: "/",
     element: <RootLayout />,
@@ -13,11 +25,6 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
         loader: postsService.fetchAllPosts,
-      },
-      {
-        path: "/posts/:postId",
-        element: <PostDetail />,
-        loader: postsService.fetchPostById,
       },
     ],
   },

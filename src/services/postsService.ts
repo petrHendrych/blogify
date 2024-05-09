@@ -10,12 +10,21 @@ export const postsService = {
   },
 
   fetchPostById: async ({ params }: LoaderFunctionArgs) => {
-    const [post, comments] = await Promise.all([
+    const [postResponse, commentsResponse] = await Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`),
       fetch(
         `https://jsonplaceholder.typicode.com/posts/${params.postId}/comments`,
       ),
     ]);
-    return { post: await post.json(), comments: await comments.json() };
+    const post = await postResponse.json();
+    const comments = await commentsResponse.json();
+    const userResponse = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${post.userId}`,
+    );
+    return {
+      post,
+      comments,
+      user: await userResponse.json(),
+    };
   },
 };

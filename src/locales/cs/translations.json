@@ -2,7 +2,8 @@
   "navbar": {
     "home": "Domů",
     "cooking": "Vaření",
-    "IT": "IT"
+    "IT": "IT",
+    "gardening": "Zahradnictví"
   },
   "latestPosts": "Poslední příspěvky",
   "readFullArticle": "Přečíst celý článek"

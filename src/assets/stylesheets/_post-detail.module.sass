@@ -1,0 +1,14 @@
+@import "main"
+
+.narrowContainer
+  h1
+    text-wrap: balance
+    &:first-letter
+      text-transform: capitalize
+  p
+    text-wrap: pretty
+
+
+@include media-breakpoint-up(lg)
+  .narrowContainer
+    max-width: var(--bs-breakpoint-md)
