@@ -6,9 +6,9 @@ const Navigation = () => {
   const { t } = useTranslation();
 
   return (
-    <Nav defaultActiveKey="/home">
+    <Nav defaultActiveKey="/">
       <Nav.Item>
-        <Nav.Link href="/home">{t("navbar.home")}</Nav.Link>
+        <Nav.Link href="/">{t("navbar.home")}</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link as={Link} to="/cooking">
