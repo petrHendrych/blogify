@@ -17,3 +17,5 @@ export const titles = [
   "The one that you didn't expect",
   "Some good tips",
 ];
+
+export const categories = ["cooking", "IT", "gardening"];

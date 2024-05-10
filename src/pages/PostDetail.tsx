@@ -21,7 +21,7 @@ const PostDetail = () => {
 
   return (
     <Container className={styles.narrowContainer}>
-      <span className="text-muted mb-2 d-block">cooking</span>
+      <span className="text-muted mb-2 d-block">{post.category}</span>
 
       <h1 className="mb-3">
         <strong>{post.title}</strong>

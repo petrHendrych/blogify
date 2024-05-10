@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "react-router-dom";
-import { getRandom, images } from "@/data";
+import { categories, getRandom, images } from "@/data";
 import { Post } from "@/types";
 
 export const postsService = {
@@ -8,9 +8,11 @@ export const postsService = {
       signal: request.signal,
     });
     const data = await res.json();
-    return data
-      .splice(0, 12)
-      .map((p: Post) => ({ ...p, thumbnail: getRandom(images) })); // just get first 12 instead all 100 from request and add thumbnail
+    return data.splice(0, 12).map((p: Post) => ({
+      ...p,
+      thumbnail: getRandom(images),
+      category: getRandom(categories),
+    })); // just get first 12 instead all 100 from request and add random thumbnail and category
   },
 
   fetchPostById: async ({ params }: LoaderFunctionArgs) => {
@@ -26,7 +28,7 @@ export const postsService = {
       `https://jsonplaceholder.typicode.com/users/${post.userId}`,
     );
     return {
-      post,
+      post: { ...post, category: getRandom(categories) },
       comments,
       user: await userResponse.json(),
     };

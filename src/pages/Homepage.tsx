@@ -11,7 +11,7 @@ const description =
 
 function Homepage() {
   const { t } = useTranslation();
-  const posts = useLoaderData() as Array<Post & { thumbnail: string }>;
+  const posts = useLoaderData() as Post[];
 
   return (
     <>

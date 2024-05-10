@@ -4,12 +4,7 @@ import { Post } from "@/types";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const PostCard = ({
-  title,
-  body,
-  id,
-  thumbnail,
-}: Post & { thumbnail: string }) => {
+const PostCard = ({ title, body, id, thumbnail, category }: Post) => {
   const { t } = useTranslation();
 
   return (
@@ -18,6 +13,7 @@ const PostCard = ({
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
+        <Card.Text className="text-muted">{category}</Card.Text>
         <Button variant="outline-primary">{t("readFullArticle")}</Button>
       </Card.Body>
     </Card>
