@@ -7,6 +7,7 @@ import PostAuthorDetails from "@/components/PostAuthorDetails.tsx";
 import { generatePost, PostData } from "@/data";
 import { useMemo } from "react";
 import PostRenderer from "@/components/PostRenderer.tsx";
+import { useTranslation } from "react-i18next";
 
 const PostDetail = () => {
   const { post, user } = useLoaderData() as {
@@ -15,6 +16,7 @@ const PostDetail = () => {
     user: User;
   };
 
+  const { t } = useTranslation();
   const postContent = useMemo(() => generatePost(), []);
 
   return (
@@ -35,7 +37,7 @@ const PostDetail = () => {
           alt="Carbonara"
           className={styles.postImage}
         />
-        <Figure.Caption>Final product of the Carbonara recipe</Figure.Caption>
+        <Figure.Caption>{t("figureCaption")}</Figure.Caption>
       </Figure>
 
       {postContent.map((post) => PostRenderer(post as PostData))}

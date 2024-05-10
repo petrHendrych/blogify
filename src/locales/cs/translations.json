@@ -6,5 +6,6 @@
     "gardening": "Zahradnictví"
   },
   "latestPosts": "Poslední příspěvky",
-  "readFullArticle": "Přečíst celý článek"
+  "readFullArticle": "Přečíst celý článek",
+  "figureCaption": "Popis obrázku by měl být z backendu"
 }

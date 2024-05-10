@@ -6,5 +6,6 @@
     "gardening": "Gardening"
   },
   "latestPosts": "Latest posts",
-  "readFullArticle": "Read full article"
+  "readFullArticle": "Read full article",
+  "figureCaption": "Figure caption should be from backend"
 }
