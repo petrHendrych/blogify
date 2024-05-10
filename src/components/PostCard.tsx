@@ -1,11 +1,15 @@
 import { Button, Card } from "react-bootstrap";
-import thumbnail from "../assets/images/thumbnail.jpg";
 import styles from "../assets/stylesheets/_post.module.sass";
 import { Post } from "@/types";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const PostCard = ({ title, body, id }: Post) => {
+const PostCard = ({
+  title,
+  body,
+  id,
+  thumbnail,
+}: Post & { thumbnail: string }) => {
   const { t } = useTranslation();
 
   return (

@@ -2,7 +2,7 @@ import * as data from "./postsData.ts";
 
 export * from "./postsData.ts";
 
-const getRandom = <T>(array: T[]) => {
+export const getRandom = <T>(array: T[]) => {
   const random = Math.floor(Math.random() * array.length);
   return array[random];
 };
