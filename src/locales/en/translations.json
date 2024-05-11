@@ -13,6 +13,7 @@
   "readFullArticle": "Read full article",
   "figureCaption": "Figure caption should be from backend",
   "readMore": "Read more",
-  "newComment": "Leave a comment here",
+  "newComment": "New comment",
+  "leaveComment": "Leave a comment here",
   "addComment": "Add comment"
 }

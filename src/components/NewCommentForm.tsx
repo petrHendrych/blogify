@@ -4,10 +4,23 @@ import * as yup from "yup";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import type { InferType } from "yup";
+import type { FunctionComponent } from "react";
+import type { FormikHelpers } from "formik";
+import type { StorageComment } from "@/types";
+import { useLocalStorage } from "usehooks-ts";
+import { StorageKeys } from "@/utils/constants.ts";
 
-const NewCommentForm = () => {
+type NewCommentFormProps = {
+  postId: number;
+};
+
+const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
   const { t } = useTranslation();
   const { Formik } = formik;
+  const [comments, setComments] = useLocalStorage(
+    `${StorageKeys.BLOGIFY_COMMENTS_KEY}-post-${postId}`,
+    [] as StorageComment[],
+  );
 
   const schema = yup.object().shape({
     email: yup
@@ -17,8 +30,20 @@ const NewCommentForm = () => {
     comment: yup.string().required(t("formErrors.required")),
   });
 
-  const handleSubmit = (values: InferType<typeof schema>) => {
-    console.log(values);
+  const handleSubmit = (
+    values: InferType<typeof schema>,
+    { resetForm }: FormikHelpers<InferType<typeof schema>>,
+  ) => {
+    const comment: StorageComment = {
+      email: values.email,
+      body: values.comment,
+      postId,
+      name: "",
+      id: crypto.randomUUID(),
+      commentId: undefined,
+    };
+    setComments([...comments, comment]);
+    resetForm();
   };
 
   return (
@@ -56,7 +81,7 @@ const NewCommentForm = () => {
           <Form.Group className="mb-3" controlId="validationComment">
             <FloatingLabel
               controlId="floatingTextarea2"
-              label={t("newComment")}
+              label={t("leaveComment")}
             >
               <Form.Control
                 as="textarea"

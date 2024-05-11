@@ -1,32 +1,28 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { commentsService } from "@/services/commentsService.ts";
 import type { Comment } from "@/types";
 import { Button, Image, Stack } from "react-bootstrap";
 import avatar from "@/assets/images/avatar.jpg";
 import NewCommentForm from "@/components/NewCommentForm.tsx";
+import { useTranslation } from "react-i18next";
+import { useComments } from "@/hooks/useComments.ts";
 
 const Comments = () => {
+  const { t } = useTranslation();
   const { postId } = useParams<{ postId: string }>();
-  const [comments, setComments] = useState<Comment[]>([]);
-
-  useEffect(() => {
-    if (postId) {
-      commentsService.fetchPostComments(postId).then((res) => {
-        setComments(res);
-      });
-    }
-  }, [postId]);
+  const { mergedComments } = useComments(postId!);
 
   return (
     <>
       <h2 className="fs-3 mb-4">Comments</h2>
 
       <Stack gap={3} className="mb-4">
-        {comments?.map((comment) => <Comment key={comment.id} {...comment} />)}
+        {mergedComments.map((comment) => (
+          <Comment key={comment.id} {...comment} />
+        ))}
       </Stack>
 
-      <NewCommentForm />
+      <h5>{t("newComment")}</h5>
+      <NewCommentForm postId={Number(postId ?? 0)} />
     </>
   );
 };

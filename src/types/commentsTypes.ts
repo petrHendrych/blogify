@@ -1,7 +1,11 @@
 export type Comment = {
-  id: number;
+  id: number | `${string}-${string}-${string}-${string}-${string}`;
   postId: number;
-  name: string;
+  name?: string;
   email: string;
   body: string;
 };
+
+export type StorageComment = {
+  commentId?: number | `${string}-${string}-${string}-${string}-${string}`;
+} & Comment;
