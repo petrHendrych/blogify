@@ -15,5 +15,10 @@
   "readMore": "Přečíst více",
   "newComment": "Nový komentář",
   "leaveComment": "Zanechte zde komentář",
-  "addComment": "Přidat komentář"
+  "addComment": "Přidat komentář",
+  "reply": "Odpovědět",
+  "areYouSure": "Jste si jistí?",
+  "deleteCommentInfo": "Tato akce smaže komentář a akci nelze vrátit",
+  "close": "Zavřít",
+  "deleteComment": "Smazat komentář"
 }

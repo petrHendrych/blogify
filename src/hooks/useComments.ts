@@ -6,7 +6,7 @@ import { commentsService } from "@/services/commentsService.ts";
 
 export const useComments = (postId: string) => {
   const [comments, setComments] = useState<Comment[]>([]);
-  const [storageComments] = useLocalStorage(
+  const [storageComments, setStorageComments] = useLocalStorage(
     `${StorageKeys.BLOGIFY_COMMENTS_KEY}-post-${postId}`,
     [] as StorageComment[],
   );
@@ -23,5 +23,14 @@ export const useComments = (postId: string) => {
     return [...comments, ...storageComments];
   }, [comments, storageComments]);
 
-  return { mergedComments };
+  const deleteComment = (
+    id: `${string}-${string}-${string}-${string}-${string}`,
+  ) => {
+    const index = storageComments.findIndex((c) => c.id === id);
+    if (index >= 0) {
+      setStorageComments(storageComments.toSpliced(index, 1));
+    }
+  };
+
+  return { mergedComments, deleteComment };
 };

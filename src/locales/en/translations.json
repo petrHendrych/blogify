@@ -15,5 +15,10 @@
   "readMore": "Read more",
   "newComment": "New comment",
   "leaveComment": "Leave a comment here",
-  "addComment": "Add comment"
+  "addComment": "Add comment",
+  "reply": "Reply",
+  "areYouSure": "Are you sure?",
+  "deleteCommentInfo": "This action will remove comment and action cannot be reverted.",
+  "close": "Close",
+  "deleteComment": "Delete comment"
 }
