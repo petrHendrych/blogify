@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import type { InferType } from "yup";
-import type { FunctionComponent } from "react";
+import { type FunctionComponent, useMemo } from "react";
 import type { FormikHelpers } from "formik";
 import type { StorageComment } from "@/types";
 import { useLocalStorage } from "usehooks-ts";
@@ -22,21 +22,24 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
     [] as StorageComment[],
   );
 
-  const schema = yup.object().shape({
-    email: yup
-      .string()
-      .email(t("formErrors.invalidEmailForm"))
-      .required(t("formErrors.required")),
-    comment: yup.string().required(t("formErrors.required")),
-  });
+  const schema = useMemo(
+    () =>
+      yup.object().shape({
+        email: yup
+          .string()
+          .email(t("formErrors.invalidEmailForm"))
+          .required(t("formErrors.required")),
+        body: yup.string().required(t("formErrors.required")),
+      }),
+    [t],
+  );
 
   const handleSubmit = (
     values: InferType<typeof schema>,
     { resetForm }: FormikHelpers<InferType<typeof schema>>,
   ) => {
     const comment: StorageComment = {
-      email: values.email,
-      body: values.comment,
+      ...values,
       postId,
       name: "",
       id: crypto.randomUUID(),
@@ -52,7 +55,7 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
       onSubmit={handleSubmit}
       initialValues={{
         email: "",
-        comment: "",
+        body: "",
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
@@ -85,17 +88,17 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
             >
               <Form.Control
                 as="textarea"
-                name="comment"
+                name="body"
                 placeholder="Leave a comment here"
                 style={{ height: "200px" }}
                 required
-                value={values.comment}
+                value={values.body}
                 onChange={handleChange}
-                isValid={touched.comment && !errors.comment}
-                isInvalid={!!errors.comment}
+                isValid={touched.body && !errors.body}
+                isInvalid={!!errors.body}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.comment}
+                {errors.body}
               </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
