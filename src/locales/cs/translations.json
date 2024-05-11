@@ -5,8 +5,14 @@
     "IT": "IT",
     "gardening": "Zahradnictví"
   },
+  "formErrors": {
+    "invalidEmailForm": "Email musí mít platnou formu",
+    "required": "Povinné pole"
+  },
   "latestPosts": "Poslední příspěvky",
   "readFullArticle": "Přečíst celý článek",
   "figureCaption": "Popis obrázku by měl být z backendu",
-  "readMore": "Přečíst více"
+  "readMore": "Přečíst více",
+  "newComment": "Zanechte zde komentář",
+  "addComment": "Přidat komentář"
 }

@@ -5,8 +5,14 @@
     "IT": "IT",
     "gardening": "Gardening"
   },
+  "formErrors": {
+    "invalidEmailForm": "Email must be in valid email form",
+    "required": "Field is required"
+  },
   "latestPosts": "Latest posts",
   "readFullArticle": "Read full article",
   "figureCaption": "Figure caption should be from backend",
-  "readMore": "Read more"
+  "readMore": "Read more",
+  "newComment": "Leave a comment here",
+  "addComment": "Add comment"
 }

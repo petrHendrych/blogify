@@ -4,6 +4,7 @@ import { commentsService } from "@/services/commentsService.ts";
 import type { Comment } from "@/types";
 import { Button, Image, Stack } from "react-bootstrap";
 import avatar from "@/assets/images/avatar.jpg";
+import NewCommentForm from "@/components/NewCommentForm.tsx";
 
 const Comments = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -21,9 +22,11 @@ const Comments = () => {
     <>
       <h2 className="fs-3 mb-4">Comments</h2>
 
-      <Stack gap={3}>
+      <Stack gap={3} className="mb-4">
         {comments?.map((comment) => <Comment key={comment.id} {...comment} />)}
       </Stack>
+
+      <NewCommentForm />
     </>
   );
 };
