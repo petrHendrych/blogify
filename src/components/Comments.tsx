@@ -13,27 +13,27 @@ import ReplyCommentForm from "@/components/forms/ReplyCommentForm.tsx";
 const Comments = () => {
   const { t } = useTranslation();
   const { postId } = useParams<{ postId: string }>();
-  const { mergedComments } = useComments(postId!);
+  const { comments } = useComments(postId!);
 
   return (
     <>
       <h2 className="fs-3 mb-4">Comments</h2>
 
       <Stack gap={3} className="mb-4">
-        {mergedComments.map((comment) => (
-          <Comment key={comment.id} {...comment} />
+        {comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} />
         ))}
       </Stack>
 
       <h5>{t("newComment")}</h5>
-      <NewCommentForm postId={Number(postId ?? 0)} />
+      <NewCommentForm postId={postId!} />
     </>
   );
 };
 
 export default Comments;
 
-const Comment = ({ body, email, id }: Comment) => {
+const Comment = ({ comment }: { comment: Comment }) => {
   const { postId } = useParams<{ postId: string }>();
   const { deleteComment } = useComments(postId!);
   const [show, setShow] = useState(false);
@@ -41,8 +41,8 @@ const Comment = ({ body, email, id }: Comment) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
 
   const handleDelete = () => {
-    if (typeof id !== "number") {
-      deleteComment(id);
+    if (typeof comment.id !== "number") {
+      deleteComment(comment.id);
     }
   };
 
@@ -59,8 +59,8 @@ const Comment = ({ body, email, id }: Comment) => {
         />
         <Stack className="-mt-2">
           <div className="d-flex justify-content-between">
-            <strong>{email}</strong>
-            {typeof id !== "number" && (
+            <strong>{comment.email}</strong>
+            {typeof comment.id !== "number" && (
               <Button
                 size="sm"
                 variant="link"
@@ -72,9 +72,13 @@ const Comment = ({ body, email, id }: Comment) => {
               </Button>
             )}
           </div>
-          <div>{body}</div>
+          <div>{comment.body}</div>
           {showReplyForm ? (
-            <ReplyCommentForm onCancel={() => setShowReplyForm(false)} />
+            <ReplyCommentForm
+              onCancel={() => setShowReplyForm(false)}
+              postId={postId!}
+              originalComment={comment}
+            />
           ) : (
             <Button
               variant="link"

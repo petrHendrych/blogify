@@ -5,13 +5,17 @@ import type { InferType } from "yup";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import { Button, Form, InputGroup, Stack } from "react-bootstrap";
+import type { Comment } from "@/types";
 
 type ReplyCommentFormProps = {
   onCancel: () => void;
+  postId: string;
+  originalComment: Comment;
 };
 
 const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
   onCancel,
+  postId,
 }) => {
   const { t } = useTranslation();
   const { Formik } = formik;
@@ -32,7 +36,13 @@ const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
     values: InferType<typeof schema>,
     { resetForm }: FormikHelpers<InferType<typeof schema>>,
   ) => {
-    console.log(values);
+    const comment: Comment = {
+      ...values,
+      postId: Number(postId),
+      name: "",
+      id: crypto.randomUUID(),
+    };
+    console.log(comment);
     resetForm();
     onCancel();
   };

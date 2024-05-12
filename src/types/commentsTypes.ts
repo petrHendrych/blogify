@@ -6,8 +6,5 @@ export type Comment = {
   name?: string;
   email: string;
   body: string;
+  children?: Comment[];
 };
-
-export type StorageComment = {
-  commentId?: number | UUID;
-} & Comment;

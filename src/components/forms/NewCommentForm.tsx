@@ -1,26 +1,21 @@
-import * as formik from "formik";
-import { FloatingLabel, Form } from "react-bootstrap";
-import * as yup from "yup";
-import { Button } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
-import type { InferType } from "yup";
-import { type FunctionComponent, useMemo } from "react";
 import type { FormikHelpers } from "formik";
-import type { StorageComment } from "@/types";
-import { useLocalStorage } from "usehooks-ts";
-import { StorageKeys } from "@/utils/constants.ts";
+import * as formik from "formik";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
+import type { InferType } from "yup";
+import * as yup from "yup";
+import { useTranslation } from "react-i18next";
+import { type FunctionComponent, useMemo } from "react";
+import type { Comment } from "@/types";
+import { useComments } from "@/hooks/useComments.ts";
 
 type NewCommentFormProps = {
-  postId: number;
+  postId: string;
 };
 
 const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
   const { t } = useTranslation();
   const { Formik } = formik;
-  const [comments, setComments] = useLocalStorage(
-    `${StorageKeys.BLOGIFY_COMMENTS_KEY}-post-${postId}`,
-    [] as StorageComment[],
-  );
+  const { addComment } = useComments(postId);
 
   const schema = useMemo(
     () =>
@@ -38,14 +33,13 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
     values: InferType<typeof schema>,
     { resetForm }: FormikHelpers<InferType<typeof schema>>,
   ) => {
-    const comment: StorageComment = {
+    const comment: Comment = {
       ...values,
-      postId,
+      postId: Number(postId),
       name: "",
       id: crypto.randomUUID(),
-      commentId: undefined,
     };
-    setComments([...comments, comment]);
+    addComment(comment);
     resetForm();
   };
 
