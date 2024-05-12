@@ -2,12 +2,13 @@ import { useParams } from "react-router-dom";
 import type { Comment } from "@/types";
 import { Button, Image, Modal, Stack } from "react-bootstrap";
 import avatar from "@/assets/images/avatar.jpg";
-import NewCommentForm from "@/components/NewCommentForm.tsx";
+import NewCommentForm from "@/components/forms/NewCommentForm.tsx";
 import { useTranslation } from "react-i18next";
 import { useComments } from "@/hooks/useComments.ts";
 import { Trash } from "react-bootstrap-icons";
 import styles from "@/assets/stylesheets/_comments.module.sass";
 import { useState } from "react";
+import ReplyCommentForm from "@/components/forms/ReplyCommentForm.tsx";
 
 const Comments = () => {
   const { t } = useTranslation();
@@ -37,6 +38,7 @@ const Comment = ({ body, email, id }: Comment) => {
   const { deleteComment } = useComments(postId!);
   const [show, setShow] = useState(false);
   const { t } = useTranslation();
+  const [showReplyForm, setShowReplyForm] = useState(false);
 
   const handleDelete = () => {
     if (typeof id !== "number") {
@@ -71,9 +73,17 @@ const Comment = ({ body, email, id }: Comment) => {
             )}
           </div>
           <div>{body}</div>
-          <Button variant="link" className={styles.replyButton}>
-            {t("reply")}
-          </Button>
+          {showReplyForm ? (
+            <ReplyCommentForm onCancel={() => setShowReplyForm(false)} />
+          ) : (
+            <Button
+              variant="link"
+              className={styles.replyButton}
+              onClick={() => setShowReplyForm(true)}
+            >
+              {t("reply")}
+            </Button>
+          )}
         </Stack>
       </Stack>
 

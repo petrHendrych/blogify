@@ -62,8 +62,8 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
         <Form noValidate onSubmit={handleSubmit}>
           <Form.Group controlId="validationEmail">
             <FloatingLabel
-              controlId="floatingInput"
-              label="Email address"
+              controlId="floatingInputEmail"
+              label={t("email")}
               className="mb-3"
             >
               <Form.Control
@@ -83,13 +83,13 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="validationComment">
             <FloatingLabel
-              controlId="floatingTextarea2"
+              controlId="floatingInputBody"
               label={t("leaveComment")}
             >
               <Form.Control
                 as="textarea"
                 name="body"
-                placeholder="Leave a comment here"
+                placeholder={t("leaveComment")}
                 style={{ height: "200px" }}
                 required
                 value={values.body}

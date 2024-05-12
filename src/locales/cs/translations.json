@@ -20,5 +20,7 @@
   "areYouSure": "Jste si jistí?",
   "deleteCommentInfo": "Tato akce smaže komentář a akci nelze vrátit",
   "close": "Zavřít",
-  "deleteComment": "Smazat komentář"
+  "deleteComment": "Smazat komentář",
+  "email": "Email",
+  "cancel": "Zrušit"
 }

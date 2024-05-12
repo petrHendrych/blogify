@@ -20,5 +20,7 @@
   "areYouSure": "Are you sure?",
   "deleteCommentInfo": "This action will remove comment and action cannot be reverted.",
   "close": "Close",
-  "deleteComment": "Delete comment"
+  "deleteComment": "Delete comment",
+  "email": "Email",
+  "cancel": "Cancel"
 }
