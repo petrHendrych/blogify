@@ -1,5 +1,7 @@
+import type { UUID } from "@/types/commonTypes.ts";
+
 export type Comment = {
-  id: number | `${string}-${string}-${string}-${string}-${string}`;
+  id: number | UUID;
   postId: number;
   name?: string;
   email: string;
@@ -7,5 +9,5 @@ export type Comment = {
 };
 
 export type StorageComment = {
-  commentId?: number | `${string}-${string}-${string}-${string}-${string}`;
+  commentId?: number | UUID;
 } & Comment;
