@@ -1,4 +1,6 @@
 import type { Preview } from "@storybook/react";
+import "../src/index.sass";
+import "../src/locales/i18n.ts";
 
 const preview: Preview = {
   parameters: {

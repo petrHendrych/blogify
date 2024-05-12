@@ -1,4 +1,5 @@
 import ThumbnailPost from "@/components/ThumbnailPost.tsx";
+import Thumbnail from "@/assets/images/big-thumbnail.avif";
 import PostCard from "@/components/PostCard.tsx";
 import { useLoaderData } from "react-router-dom";
 import { Post } from "@/types";
@@ -15,7 +16,11 @@ function Homepage() {
 
   return (
     <>
-      <ThumbnailPost title={title} description={description} />
+      <ThumbnailPost
+        title={title}
+        description={description}
+        thumbnail={Thumbnail}
+      />
       <h3 className="d-none d-md-block mt-5 text-center text-uppercase">
         {t("latestPosts")}
       </h3>

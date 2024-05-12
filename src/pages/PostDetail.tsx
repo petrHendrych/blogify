@@ -30,7 +30,7 @@ const PostDetail = () => {
 
       <p className="fs-5">{post.body}</p>
 
-      <PostAuthorDetails {...user} />
+      <PostAuthorDetails user={user} date={new Date()} minutesRead={5} />
 
       <Figure>
         <Figure.Image

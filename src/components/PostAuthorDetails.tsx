@@ -5,7 +5,17 @@ import AvatarImage from "@/assets/images/avatar.jpg";
 import { useTranslation } from "react-i18next";
 import { formatDate } from "@/utils";
 
-const PostAuthorDetails: FunctionComponent<User> = (user) => {
+type PostAuthorDetailsProps = {
+  user: User;
+  date: Date;
+  minutesRead: number;
+};
+
+const PostAuthorDetails: FunctionComponent<PostAuthorDetailsProps> = ({
+  user,
+  date,
+  minutesRead,
+}) => {
   const { i18n } = useTranslation();
 
   return (
@@ -23,8 +33,8 @@ const PostAuthorDetails: FunctionComponent<User> = (user) => {
       <Stack>
         <div>{user.name}</div>
         <Stack direction="horizontal" className="text-muted small" gap={1}>
-          <span>{formatDate(new Date(), i18n.language)}</span>
-          <span>• 5 min read</span>
+          <span>{formatDate(date, i18n.language)}</span>
+          <span>• {minutesRead} min read</span>
         </Stack>
       </Stack>
     </Stack>
