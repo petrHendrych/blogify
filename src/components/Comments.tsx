@@ -21,7 +21,7 @@ const Comments = () => {
 
       <Stack gap={3} className="mb-4">
         {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment key={comment.id} {...comment} />
         ))}
       </Stack>
 
@@ -33,18 +33,12 @@ const Comments = () => {
 
 export default Comments;
 
-const Comment = ({ comment }: { comment: Comment }) => {
+const Comment = ({ id, email, body }: Comment) => {
   const { postId } = useParams<{ postId: string }>();
   const { deleteComment } = useComments(postId!);
   const [show, setShow] = useState(false);
   const { t } = useTranslation();
   const [showReplyForm, setShowReplyForm] = useState(false);
-
-  const handleDelete = () => {
-    if (typeof comment.id !== "number") {
-      deleteComment(comment.id);
-    }
-  };
 
   return (
     <>
@@ -59,25 +53,23 @@ const Comment = ({ comment }: { comment: Comment }) => {
         />
         <Stack className="-mt-2">
           <div className="d-flex justify-content-between">
-            <strong>{comment.email}</strong>
-            {typeof comment.id !== "number" && (
-              <Button
-                size="sm"
-                variant="link"
-                className={styles.deleteIconButton}
-                title="Delete"
-                onClick={() => setShow(true)}
-              >
-                <Trash color="#ff0000" />
-              </Button>
-            )}
+            <strong>{email}</strong>
+            <Button
+              size="sm"
+              variant="link"
+              className={styles.deleteIconButton}
+              title="Delete"
+              onClick={() => setShow(true)}
+            >
+              <Trash color="#ff0000" />
+            </Button>
           </div>
-          <div>{comment.body}</div>
+          <div>{body}</div>
           {showReplyForm ? (
             <ReplyCommentForm
               onCancel={() => setShowReplyForm(false)}
               postId={postId!}
-              originalComment={comment}
+              parentCommentId={id}
             />
           ) : (
             <Button
@@ -100,7 +92,7 @@ const Comment = ({ comment }: { comment: Comment }) => {
           <Button variant="secondary" onClick={() => setShow(false)}>
             {t("close")}
           </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          <Button variant="danger" onClick={() => deleteComment(id)}>
             {t("deleteComment")}
           </Button>
         </Modal.Footer>

@@ -5,20 +5,21 @@ import type { InferType } from "yup";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import { Button, Form, InputGroup, Stack } from "react-bootstrap";
-import type { Comment } from "@/types";
+import type { Comment, UUID } from "@/types";
 
 type ReplyCommentFormProps = {
   onCancel: () => void;
   postId: string;
-  originalComment: Comment;
+  parentCommentId: UUID;
 };
 
 const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
   onCancel,
   postId,
+  parentCommentId,
 }) => {
-  const { t } = useTranslation();
   const { Formik } = formik;
+  const { t } = useTranslation();
 
   const schema = useMemo(
     () =>
@@ -41,8 +42,9 @@ const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
       postId: Number(postId),
       name: "",
       id: crypto.randomUUID(),
+      parentCommentId,
     };
-    console.log(comment);
+    console.log(comment); // TODO handle reply in comments
     resetForm();
     onCancel();
   };

@@ -38,6 +38,7 @@ const NewCommentForm: FunctionComponent<NewCommentFormProps> = ({ postId }) => {
       postId: Number(postId),
       name: "",
       id: crypto.randomUUID(),
+      parentCommentId: null,
     };
     addComment(comment);
     resetForm();
