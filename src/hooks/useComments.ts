@@ -1,23 +1,42 @@
-import type { Comment, UUID } from "@/types";
+import type { Comment } from "@/types";
 import { useLocalStorage } from "usehooks-ts";
 import { StorageKeys } from "@/utils/constants.ts";
 
 export const useComments = (postId: string) => {
-  const [comments, setComments, removeComments] = useLocalStorage(
+  const [comments, setComments] = useLocalStorage(
     `${StorageKeys.BLOGIFY_COMMENTS_KEY}-post-${postId}`,
     [] as Comment[],
   );
 
-  const deleteComment = (id: UUID) => {
-    const index = comments.findIndex((c) => c.id === id);
-    if (index >= 0) {
-      const newComments = comments.toSpliced(index, 1);
-      if (comments.length > 0) {
-        setComments(newComments);
-      } else {
-        removeComments();
-      }
+  const removeComment = (commentList: Comment[], childToBeRemoved: Comment) => {
+    return commentList.filter((comment) => comment.id !== childToBeRemoved.id);
+  };
+
+  const handleDeleteComment = (
+    prevList: Comment[],
+    currentComment: Comment,
+  ) => {
+    if (currentComment.parentCommentId === null) {
+      return removeComment(prevList, currentComment);
     }
+
+    const updatedList: Comment[] = prevList.map((comment) => {
+      if (comment.id === currentComment.parentCommentId) {
+        return {
+          ...comment,
+          children: removeComment(comment.children, currentComment),
+        };
+      }
+      return {
+        ...comment,
+        children: handleDeleteComment(comment.children, currentComment),
+      };
+    });
+    return updatedList;
+  };
+
+  const deleteComment = (comment: Comment) => {
+    setComments((prevState) => handleDeleteComment(prevState, comment));
   };
 
   const addComment = (comment: Comment) => {

@@ -7,5 +7,5 @@ export type Comment = {
   email: string;
   body: string;
   parentCommentId: UUID | null;
-  children?: Comment[];
+  children: Comment[];
 };

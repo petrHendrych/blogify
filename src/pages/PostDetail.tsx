@@ -8,7 +8,7 @@ import { generatePost } from "@/data";
 import { useMemo } from "react";
 import PostRenderer from "@/components/PostRenderer.tsx";
 import { useTranslation } from "react-i18next";
-import Comments from "@/components/Comments.tsx";
+import CommentList from "@/components/CommentList.tsx";
 
 const PostDetail = () => {
   const { post, user } = useLoaderData() as {
@@ -45,7 +45,7 @@ const PostDetail = () => {
 
       <div className={styles.divider} />
 
-      <Comments />
+      <CommentList />
     </Container>
   );
 };

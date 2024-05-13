@@ -43,6 +43,7 @@ const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
       name: "",
       id: crypto.randomUUID(),
       parentCommentId,
+      children: [],
     };
     console.log(comment); // TODO handle reply in comments
     resetForm();

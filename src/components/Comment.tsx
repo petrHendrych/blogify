@@ -1,39 +1,16 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import type { Comment } from "@/types";
+import { useComments } from "@/hooks/useComments.ts";
+import { useTranslation } from "react-i18next";
 import { Button, Image, Modal, Stack } from "react-bootstrap";
 import avatar from "@/assets/images/avatar.jpg";
-import NewCommentForm from "@/components/forms/NewCommentForm.tsx";
-import { useTranslation } from "react-i18next";
-import { useComments } from "@/hooks/useComments.ts";
-import { Trash } from "react-bootstrap-icons";
 import styles from "@/assets/stylesheets/_comments.module.sass";
-import { useState } from "react";
+import { Trash } from "react-bootstrap-icons";
 import ReplyCommentForm from "@/components/forms/ReplyCommentForm.tsx";
+import type { Comment } from "@/types";
 
-const Comments = () => {
-  const { t } = useTranslation();
-  const { postId } = useParams<{ postId: string }>();
-  const { comments } = useComments(postId!);
-
-  return (
-    <>
-      <h2 className="fs-3 mb-4">Comments</h2>
-
-      <Stack gap={3} className="mb-4">
-        {comments.map((comment) => (
-          <Comment key={comment.id} {...comment} />
-        ))}
-      </Stack>
-
-      <h5>{t("newComment")}</h5>
-      <NewCommentForm postId={postId!} />
-    </>
-  );
-};
-
-export default Comments;
-
-const Comment = ({ id, email, body }: Comment) => {
+const Comment = ({ comment }: { comment: Comment }) => {
+  const { id, email, body } = comment;
   const { postId } = useParams<{ postId: string }>();
   const { deleteComment } = useComments(postId!);
   const [show, setShow] = useState(false);
@@ -92,7 +69,7 @@ const Comment = ({ id, email, body }: Comment) => {
           <Button variant="secondary" onClick={() => setShow(false)}>
             {t("close")}
           </Button>
-          <Button variant="danger" onClick={() => deleteComment(id)}>
+          <Button variant="danger" onClick={() => deleteComment(comment)}>
             {t("deleteComment")}
           </Button>
         </Modal.Footer>
@@ -100,3 +77,5 @@ const Comment = ({ id, email, body }: Comment) => {
     </>
   );
 };
+
+export default Comment;
