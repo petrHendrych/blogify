@@ -10,7 +10,7 @@ const title = "IMPRESS YOUR FRIENDS WITH THE BEST CARBONARA";
 const description =
   "Fruitcake gingerbread sesame snaps pastry donut. Cake candy jelly-o oat cake bonbon icing lemon drops apple pie. Carrot cake cupcake cookie soufflé cookie soufflé.";
 
-function Homepage() {
+function Home() {
   const { t } = useTranslation();
   const posts = useLoaderData() as Post[];
 
@@ -33,4 +33,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Home;

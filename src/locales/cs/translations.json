@@ -22,5 +22,8 @@
   "close": "Zavřít",
   "deleteComment": "Smazat komentář",
   "email": "Email",
-  "cancel": "Zrušit"
+  "cancel": "Zrušit",
+  "cookingTitle": "Přečtěte si nejnovější příspěvky o nejlepších pokrmech, tipy a triky v kuchyni a další...",
+  "ITTitle": "Přečtěte si nejnovější příspěvky o nejnovějších technologiích, počítačích, rámcích JavaScriptu a dalších...",
+  "gardeningTitle": "Přečtěte si nejnovější příspěvky o domácích rostlinách, zalévání a dalších..."
 }

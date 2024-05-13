@@ -33,4 +33,9 @@ export const postsService = {
       user: await userResponse.json(),
     };
   },
+
+  fetchByCategory: async (args: LoaderFunctionArgs, category: string) => {
+    const posts = (await postsService.fetchAllPosts(args)) as Post[];
+    return posts.filter((p) => p.category === category);
+  },
 };

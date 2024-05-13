@@ -22,5 +22,8 @@
   "close": "Close",
   "deleteComment": "Delete comment",
   "email": "Email",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "cookingTitle": "Read the latest posts about the finest dishes, tips and tricks in kitchen and more...",
+  "ITTitle": "Read the latest posts about the latest tech, computers, JavaScript frameworks and more...",
+  "gardeningTitle": "Read the latest posts about home plants, watering and more..."
 }

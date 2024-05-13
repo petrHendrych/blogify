@@ -21,7 +21,7 @@ const Navigation = () => {
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link as={Link} to="/IT">
+        <Nav.Link as={Link} to="/gardening">
           {t("navbar.gardening")}
         </Nav.Link>
       </Nav.Item>

@@ -19,10 +19,20 @@
     > img
       scale: 1.05
 
+.subPageTitle
+  text-wrap: pretty
+  width: 50%
+
 @include media-breakpoint-down(md)
   .postContainer
     grid-template-columns: 1fr
 
+  .subPageTitle
+    width: 100%
+
 @include media-breakpoint-between(md, lg)
   .postContainer
     grid-template-columns: 1fr 1fr
+
+  .subPageTitle
+    width: 100%
