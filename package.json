@@ -56,7 +56,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "bun run link && bun run format"
+      "pre-commit": "bun run lint && bun run format"
     }
   }
 }

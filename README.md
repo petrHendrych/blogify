@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+# Blogify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple blog mockup showing homepage with list of posts and post detail. It is possible to add
+comments to the post and reply to the comments.
 
-Currently, two official plugins are available:
+Blog posts are loaded from [JSON placeholder](https://jsonplaceholder.typicode.com/) and comments are written only
+locally and preserved in `localStorage` so they are loaded even after restarting application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Created three simple storybook stories to showcase basic custom components.
 
-## Expanding the ESLint configuration
+**List of libraries and packages:**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React v18 (with TypeScript)
+- React Bootstrap, sass (for UI components and styling)
+- Formik and yup (for working with forms)
+- react-i18next (for translations)
+- Storybook
+- esLint/Prettier and Husky (for code formatting)
 
-- Configure the top-level `parserOptions` property like this:
+### Installation
+Prerequisites:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- [Bun](https://bun.sh/) - used as JavaScript runtime
+- [Node](https://nodejs.org/en) - version >= 20.11.1
+
+Before first start of the application run install command:
+
+```shell
+  bun i
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To start development server run command:
+```shell
+  bun run dev
+```
+ 
+### Running Storybook
+To start storybook run command:
+```shell
+  bun run storybook
+```
