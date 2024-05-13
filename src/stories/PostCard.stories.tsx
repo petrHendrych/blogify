@@ -31,4 +31,10 @@ export const PostCardStory: Story = {
     thumbnail: CardThumbnail,
     userId: 1,
   },
+  argTypes: {
+    category: {
+      control: "select",
+      options: ["cooking", "IT", "gardening"],
+    },
+  },
 };
