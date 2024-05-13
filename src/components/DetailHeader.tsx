@@ -7,7 +7,7 @@ const DetailHeader = () => {
   return (
     <Row className="align-items-center my-4">
       <Col xs={6}>
-        <NavLink to="/">
+        <NavLink to="/" title="Homepage">
           <Logo />
         </NavLink>
       </Col>

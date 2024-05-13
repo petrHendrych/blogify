@@ -6,7 +6,12 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <Row className="justify-content-center my-4">
-      <NavLink to="/" className="text-center">
+      <NavLink
+        to="/"
+        className="text-center"
+        title="Homepage"
+        style={{ width: "fit-content" }}
+      >
         <BigLogo />
       </NavLink>
       <Navigation />
