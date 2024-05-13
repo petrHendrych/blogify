@@ -1,4 +1,4 @@
-import type { Comment } from "@/types";
+import type { Comment, UUID } from "@/types";
 import { useLocalStorage } from "usehooks-ts";
 import { StorageKeys } from "@/utils/constants.ts";
 
@@ -35,6 +35,30 @@ export const useComments = (postId: string) => {
     return updatedList;
   };
 
+  const handleAddReply = (
+    prevList: Comment[],
+    replyComment: Comment,
+    parentCommentId: UUID,
+  ) => {
+    const updatedList: Comment[] = prevList.map((comment) => {
+      if (comment.id === parentCommentId) {
+        return {
+          ...comment,
+          children: [...comment.children, replyComment],
+        };
+      }
+      return {
+        ...comment,
+        children: handleAddReply(
+          comment.children,
+          replyComment,
+          parentCommentId,
+        ),
+      };
+    });
+    return updatedList;
+  };
+
   const deleteComment = (comment: Comment) => {
     setComments((prevState) => handleDeleteComment(prevState, comment));
   };
@@ -43,5 +67,11 @@ export const useComments = (postId: string) => {
     setComments([...comments, comment]);
   };
 
-  return { comments, deleteComment, addComment };
+  const addReply = (comment: Comment, parentCommentId: UUID) => {
+    setComments((prevState) =>
+      handleAddReply(prevState, comment, parentCommentId),
+    );
+  };
+
+  return { comments, deleteComment, addComment, addReply };
 };

@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import { Button, Form, InputGroup, Stack } from "react-bootstrap";
 import type { Comment, UUID } from "@/types";
+import { useComments } from "@/hooks/useComments.ts";
 
 type ReplyCommentFormProps = {
   onCancel: () => void;
@@ -20,6 +21,7 @@ const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
 }) => {
   const { Formik } = formik;
   const { t } = useTranslation();
+  const { addReply } = useComments(postId!);
 
   const schema = useMemo(
     () =>
@@ -45,7 +47,7 @@ const ReplyCommentForm: FunctionComponent<ReplyCommentFormProps> = ({
       parentCommentId,
       children: [],
     };
-    console.log(comment); // TODO handle reply in comments
+    addReply(comment, parentCommentId);
     resetForm();
     onCancel();
   };

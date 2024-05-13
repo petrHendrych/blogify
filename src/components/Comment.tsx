@@ -19,7 +19,7 @@ const Comment = ({ comment }: { comment: Comment }) => {
 
   return (
     <>
-      <Stack direction="horizontal" gap={2}>
+      <Stack direction="horizontal" gap={2} className="mb-3">
         <Image
           src={avatar}
           alt="avatar"
@@ -59,6 +59,13 @@ const Comment = ({ comment }: { comment: Comment }) => {
           )}
         </Stack>
       </Stack>
+
+      {comment.children.length > 0 &&
+        comment.children.map((childComment: Comment) => (
+          <div key={childComment.id} style={{ marginLeft: "2rem" }}>
+            <Comment comment={childComment} />
+          </div>
+        ))}
 
       <Modal show={show} onHide={() => setShow(false)} centered>
         <Modal.Header closeButton>

@@ -14,7 +14,7 @@ const CommentList = () => {
     <>
       <h2 className="fs-3 mb-4">Comments</h2>
 
-      <Stack gap={3} className="mb-4">
+      <Stack className="mb-1">
         {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}
